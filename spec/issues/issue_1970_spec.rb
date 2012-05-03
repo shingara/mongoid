@@ -7,13 +7,13 @@ describe 'issue #1970' do
     field :name, type: String
 
     has_many :edited_posts, class_name: "Post", inverse_of: :editor
-    has_many :posts
+    has_many :posts, inverse_of: :user
   end
 
   class Post
     include Mongoid::Document
 
-    belongs_to :user
+    belongs_to :user, inverse_of: :posts
     belongs_to :editor, class_name: "User", inverse_of: :edited_posts
 
     before_save do
