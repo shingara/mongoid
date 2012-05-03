@@ -14,8 +14,8 @@ describe "Issue 1973" do
     include Mongoid::Document
     include Mongoid::Timestamps
 
-    has_many :hosted_matches, :class_name => "Match", :foreign_key => "user1_id"
-    has_many :invited_matches, :class_name => "Match", :foreign_key => "user2_id"
+    has_many :hosted_matches, :class_name => "Match", :foreign_key => "user1_id", :inverse_of => 'user1'
+    has_many :invited_matches, :class_name => "Match", :foreign_key => "user2_id", :inverse_of => 'user2'
   end
 
   it 'should not link same user' do
